@@ -1,0 +1,15 @@
+package permit.generated.conditionset.rules
+
+import future.keywords.in
+
+import data.permit.generated.abac.utils.attributes
+import data.permit.generated.abac.utils.condition_set_permissions
+import data.permit.generated.conditionset
+
+default Engineering_5f5fManager_5f5fBased_5f5fin_5f5fthe_5f5fUSA_5fon_5fservices_5fServices_5f5fabove_5f5f500_5f5fUSD = false
+
+Engineering_5f5fManager_5f5fBased_5f5fin_5f5fthe_5f5fUSA_5fon_5fservices_5fServices_5f5fabove_5f5f500_5f5fUSD {
+	conditionset.userset_Engineering_5fManager_5fBased_5fin_5fthe_5fUSA
+	conditionset.resourceset_Services_5fabove_5f500_5fUSD
+	input.action in condition_set_permissions.Engineering_Manager_Based_in_the_USA.Services_above_500_USD[input.resource.type]
+}

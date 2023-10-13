@@ -1,0 +1,15 @@
+package permit.generated.conditionset.rules
+
+import future.keywords.in
+
+import data.permit.generated.abac.utils.attributes
+import data.permit.generated.abac.utils.condition_set_permissions
+import data.permit.generated.conditionset
+
+default _5f5f_5f5fautogen_5f5fadmin_5fon_5fservices_5fServices_5f5fabove_5f5f500_5f5fUSD = false
+
+_5f5f_5f5fautogen_5f5fadmin_5fon_5fservices_5fServices_5f5fabove_5f5f500_5f5fUSD {
+	conditionset.userset__5f_5fautogen_5fadmin
+	conditionset.resourceset_Services_5fabove_5f500_5fUSD
+	input.action in condition_set_permissions.__autogen_admin.Services_above_500_USD[input.resource.type]
+}
