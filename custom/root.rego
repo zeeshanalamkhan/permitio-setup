@@ -1,4 +1,4 @@
-package permit.custom
+package permit.custom.authz
 
 import input.attributes.request.http as http_request
 
