@@ -1,6 +1,8 @@
 package permit.custom
 
-default allow := false
+import input.attributes.request.http as http_request
+
+default allow = false
 
 # You can find the official Rego tutorial at:
 # https://www.openpolicyagent.org/docs/latest/policy-language/
@@ -14,3 +16,25 @@ default allow := false
 #     # if my_custom_rule is true, EVEN IF policies.allow is false.
 #     my_custom_rule
 # }
+
+
+parsed_path := split_path(http_request.path)
+
+allow {
+    http_request.method == "GET"
+    some i
+    parsed_path[i] == token.payload.userID
+    token.payload.role == "admin"
+}
+
+token := {"payload": payload} {
+    [_, jwt_token] := split(http_request.headers.authorization, " ")
+    io.jwt.decode(jwt_token, [_, payload, _])
+}
+
+split_path(str) = parts {
+    trimmed := trim(str, "/")
+    parts := split(trimmed, "/")
+}
+
+
